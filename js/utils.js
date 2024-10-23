@@ -17,4 +17,22 @@ function *getNumberGenerator(max) {
   }
 }
 
+const getRandomUniqueValue = () => {
+  const previousValues = [];
+  return function (min, max){
+    let currentValue = getRandomValue(min, max);
+    if(previousValues.length >= (max - min) + 1){
+      console.error(`Уникальные ID в диапазоне ${min} - ${max} исчерпаны`);
+      return null;
+    }
+    while(previousValues.includes(currentValue)){
+      currentValue = getRandomValue(min, max);
+      console.log('Cycle');
+    }
+    previousValues.push(currentValue);
+
+    return currentValue;
+  };
+};
+
 export {getNumberGenerator, getRandomArrayItem, getRandomValue, checkLength};
