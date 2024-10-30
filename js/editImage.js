@@ -1,3 +1,5 @@
+import {isEscapeKey} from "./utils.js";
+
 const fileINput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadPreview = document.querySelector('.img-upload__preview');
@@ -12,26 +14,39 @@ function readURL(el) {
        });
        fR.readAsDataURL(el.files[0]);
   }
-};
+}
 
+function escCloseHandler(evt) {
+  if(isEscapeKey(evt)){
+    closeEditor(evt);
+  }
+}
 
 function addPreviewCloseListener(evt){
   closeEditor(evt);
 }
 
-function closeEditor(evt){
+function unhideEditor(){
+  uploadOverlay.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+}
+
+function hideEditor(){
   uploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  // console.log(evt.target);
+}
+
+function closeEditor(evt){
+  hideEditor();
+  fileINput.value = '';
   evt.target.removeEventListener('click', addPreviewCloseListener);
+  document.removeEventListener('keydown', escCloseHandler);
 }
 
 function openEditor(){
-  // console.log(fileReader.readAsDataURL(fileINput.files[0]));
-  // uploadPreviewImg.src = fileReader.readAsDataURL();
-  uploadOverlay.classList.remove('hidden');
-  document.body.classList.add('modal-open');
+  unhideEditor();
   uploadCancel.addEventListener('click', addPreviewCloseListener);
+  document.addEventListener('keydown', escCloseHandler);
 }
 
 fileINput.addEventListener('change', (evt) => {
