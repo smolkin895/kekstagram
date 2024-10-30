@@ -34,5 +34,33 @@ const getRandomUniqueValue = () => {
     return currentValue;
   };
 };
+// var messageTemplate = document.getElementById('message-template');
+// var chatContainer = document.querySelector('.chat-content');
+// var form = document.querySelector('.chat-form');
+// var formInput = form.querySelector('input');
 
-export {getNumberGenerator, getRandomArrayItem, getRandomValue, checkLength};
+
+// function addRemoveListener(elem){
+//   elem.addEventListener('click', ()=> {
+//     console.log(elem);
+//   });
+// }
+// form.addEventListener('submit', (evt)=> {
+//   evt.preventDefault();
+//   var clonedTemplate = messageTemplate.cloneNode(true).content;
+//   var removeButton = clonedTemplate.querySelector('.chat-message-button');
+//   addRemoveListener(removeButton);
+//   var inputText = formInput.value;
+//   var clonedDescription = clonedTemplate.querySelector('.chat-message-text');
+//   clonedDescription.textContent = inputText;
+//   chatContainer.appendChild(clonedTemplate);
+// });
+
+function isEnterKey(evt){
+  return evt.key === 'Enter';
+}
+
+function isEscapeKey(evt){
+  return evt.key === 'Escape';
+}
+export {getNumberGenerator, getRandomArrayItem, getRandomValue, checkLength, isEnterKey, isEscapeKey};

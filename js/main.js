@@ -1,6 +1,6 @@
-import {getPosts} from './data-generator.js';
-
-const firtsCall = getPosts();
-
-console.log(firtsCall[0].comments[0]);
+import {pictures} from './data.js';
+import {renderPictures} from './picture.js';
+import  './editImage.js';
+renderPictures(pictures);
+// console.log(pictures.find((item) => item.id === 1));
 
