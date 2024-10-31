@@ -2,10 +2,13 @@ import {isEscapeKey} from "./utils.js";
 import {hashtagInput, commentInput} from "./editImage.js";
 
 const fileINput = document.querySelector('#upload-file');
+const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadPreview = document.querySelector('.img-upload__preview');
 const uploadPreviewImg = document.querySelector('img');
 const uploadCancel = document.querySelector('#upload-cancel');
+
+
 const fR=new FileReader();
 
 function readURL(el) {
@@ -18,8 +21,6 @@ function readURL(el) {
 }
 
 function escCloseHandler(evt) {
-  console.log('Тут мы нажали ECS ');
-  // evt.preventDefault();
   if(isEscapeKey(evt) && evt.target != hashtagInput && evt.target != commentInput){
     closeEditor(evt);
   }
@@ -50,9 +51,12 @@ function openEditor(){
   unhideEditor();
   uploadCancel.addEventListener('click', addPreviewCloseListener);
   document.addEventListener('keydown', escCloseHandler);
+  // addFormValidationsListener();
 }
 
 fileINput.addEventListener('change', (evt) => {
   readURL(evt.target);
   openEditor();
 })
+
+export { uploadForm };

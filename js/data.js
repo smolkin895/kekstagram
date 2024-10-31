@@ -1,4 +1,4 @@
-import { getRandomPositiveInteger, getRandomArrayElement } from './util.js';
+import {  getRandomValue as getRandomPositiveInteger, getRandomArrayItem as getRandomArrayElement } from './utils.js';
 
 const commentLines = [
   'Всё отлично!',
@@ -43,7 +43,7 @@ const createPicture = (index) => ({
   description: getRandomArrayElement(descriptions),
   likes: getRandomPositiveInteger(15, 200),
   comments: Array.from(
-    { length: getRandomPositiveInteger(0, 6) },
+    { length: 16 },
     (_, commentIndex) => createComment(commentIndex + 1)
   ),
 });
