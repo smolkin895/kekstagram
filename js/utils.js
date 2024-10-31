@@ -27,7 +27,6 @@ const getRandomUniqueValue = () => {
     }
     while(previousValues.includes(currentValue)){
       currentValue = getRandomValue(min, max);
-      console.log('Cycle');
     }
     previousValues.push(currentValue);
 
