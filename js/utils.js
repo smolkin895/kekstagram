@@ -34,6 +34,19 @@ const getRandomUniqueValue = () => {
     return currentValue;
   };
 };
+
+const addEventListeners = function (elements, event, handler){
+  for(const elem of elements){
+    elem.addEventListener(event, handler);
+  }
+}
+
+const removeEventListeners = function (elements, event, handler){
+  for(const elem of elements){
+    elem.removeEventListener(event, handler);
+  }
+}
+
 // var messageTemplate = document.getElementById('message-template');
 // var chatContainer = document.querySelector('.chat-content');
 // var form = document.querySelector('.chat-form');
