@@ -27,11 +27,3 @@ function getDescriptionBody() {
     };
   };
 }
-
-function getPosts(length = getRandomValue(1, 100)){
-  const getDescriptionBodyFunc = getDescriptionBody();
-  return Array.from({length: length}, getDescriptionBodyFunc);
-}
-
-export {getPosts};
-
