@@ -1,4 +1,5 @@
 import {isEscapeKey} from "./utils.js";
+import {hashtagInput, commentInput} from "./editImage.js";
 
 const fileINput = document.querySelector('#upload-file');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
@@ -17,7 +18,9 @@ function readURL(el) {
 }
 
 function escCloseHandler(evt) {
-  if(isEscapeKey(evt)){
+  console.log('Тут мы нажали ECS ');
+  // evt.preventDefault();
+  if(isEscapeKey(evt) && evt.target != hashtagInput && evt.target != commentInput){
     closeEditor(evt);
   }
 }
