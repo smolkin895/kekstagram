@@ -1,6 +1,6 @@
 import {viewPicture} from './fullsizeView.js';
 
-const picturesContainer = document.querySelector('.pictures');
+const picturesContainer = document.querySelector('.pictures.container');
 const pictureTemplate = picture.content;
 const documentFragment = document.createDocumentFragment();
 function createPicture({url, description, comments, likes}){
@@ -13,10 +13,10 @@ function createPicture({url, description, comments, likes}){
 }
 
 
-function addViewPictureListener(picture){
-  picture.addEventListener('click', () => {
-    viewPicture(picture);
-  });
+function viewPictureListener(evt){
+  if(evt.target.matches('.picture__img')){
+    viewPicture(evt.target.closest('.picture'));
+  }
 }
 
 function renderPictures(pictures){
@@ -24,9 +24,7 @@ function renderPictures(pictures){
     documentFragment.append(createPicture(picture));
   });
   picturesContainer.appendChild(documentFragment);
-  picturesContainer.querySelectorAll('.picture').forEach((picture) =>{
-    addViewPictureListener(picture);
-  });
+  picturesContainer.addEventListener('click', viewPictureListener);
 }
 
 export {renderPictures};

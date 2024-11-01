@@ -72,7 +72,6 @@ function openComments(){
 }
 
 function refreshSocialCommentsCount(commentsElements){
-
   const  comments = imageViewiengWindow.querySelectorAll('.social__comment');
   const  hiddenComments = imageViewiengWindow.querySelectorAll('.social__comment.hidden');
   const  openedComments = comments.length - hiddenComments.length;
@@ -90,6 +89,7 @@ function viewPicture(picture){
   socialComments.innerHTML = '';
   commentsRaw.forEach((comment) => socialComments.insertAdjacentHTML('beforeend', comment));
   commentsRaw.length > 5 ? hideComments() : null;
+  refreshSocialCommentsCount();
   socialCommentsLoader.addEventListener('click', openComments);
   viewiengWindowClose.addEventListener('click', closeViewiengWindow);
 }

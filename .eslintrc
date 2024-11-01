@@ -20,4 +20,3 @@ extends:
     "ignorePatterns": ["pristine*.js"],
     "rules": {
     }
-}
