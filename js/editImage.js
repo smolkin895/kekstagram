@@ -1,4 +1,30 @@
+import {uploadPreviewImage} from './openEditor.js';
+
 const hashtagInput = document.querySelector('[name="hashtags"]');
 const commentInput = document.querySelector('[name="description"]');
+const scaleControlValue = document.querySelector('.scale__control--value');
 
-export {hashtagInput, commentInput};
+
+function scalePicture(value){
+  scaleControlValue.value = value + '%';
+  uploadPreviewImage.style['transform'] = `scale(${(value/100).toFixed(2)})`
+}
+
+function scaleControlListener(evt){
+  const elem = evt.target;
+  if(!elem.matches('.scale__control--smaller') && !elem.matches('.scale__control--bigger')){
+    return
+  }
+  const step = 25;
+  let currentValue = parseInt(scaleControlValue.value.split('%'));
+  if(elem.matches('.scale__control--smaller')){
+    currentValue === 25 ? null : scalePicture(currentValue - step);
+  }
+  else{
+    currentValue === 100 ? null : scalePicture(currentValue + step);
+  }
+}
+
+
+
+export {hashtagInput, commentInput, scaleControlListener, scaleControlValue};

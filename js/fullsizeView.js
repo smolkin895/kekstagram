@@ -71,7 +71,7 @@ function openComments(){
   }
 }
 
-function refreshSocialCommentsCount(commentsElements){
+function refreshSocialCommentsCount(){
   const  comments = imageViewiengWindow.querySelectorAll('.social__comment');
   const  hiddenComments = imageViewiengWindow.querySelectorAll('.social__comment.hidden');
   const  openedComments = comments.length - hiddenComments.length;

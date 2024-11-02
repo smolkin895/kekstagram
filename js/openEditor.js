@@ -1,13 +1,12 @@
 import {isEscapeKey} from "./utils.js";
-import {hashtagInput, commentInput} from "./editImage.js";
+import {hashtagInput, commentInput, scaleControlListener, scaleControlValue } from "./editImage.js";
 
 const fileINput = document.querySelector('#upload-file');
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadOverlay = document.querySelector('.img-upload__overlay');
-const uploadPreview = document.querySelector('.img-upload__preview');
 const uploadPreviewImg = document.querySelector('img');
 const uploadCancel = document.querySelector('#upload-cancel');
-
+const uploadPreviewImage = document.querySelector('.img-upload__preview img');
 
 const fR=new FileReader();
 
@@ -45,13 +44,17 @@ function closeEditor(evt){
   fileINput.value = '';
   evt.target.removeEventListener('click', addPreviewCloseListener);
   document.removeEventListener('keydown', escCloseHandler);
+  uploadForm.removeEventListener('click', scaleControlListener);
+
 }
 
 function openEditor(){
   unhideEditor();
   uploadCancel.addEventListener('click', addPreviewCloseListener);
   document.addEventListener('keydown', escCloseHandler);
-  // addFormValidationsListener();
+  scaleControlValue.value = '100%';
+  uploadPreviewImage.style['transform'] = 1.00;
+  uploadForm.addEventListener('click', scaleControlListener);
 }
 
 fileINput.addEventListener('change', (evt) => {
@@ -59,4 +62,4 @@ fileINput.addEventListener('change', (evt) => {
   openEditor();
 })
 
-export { uploadForm };
+export { uploadForm, uploadPreviewImage };
