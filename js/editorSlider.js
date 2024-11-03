@@ -74,9 +74,10 @@ const sliderConfigs = {
 function createSlider(element){
   const configItem = element.closest('.effects__label').getAttribute('for');
   const classList = Array.from(element.classList.values());
-  if(classList.some(i => !i.indexOf('none')));
-  console.log(noUiSlider.target)
+  if(classList.some(i => !i.indexOf('none'))){
+    console.log(noUiSlider.target)
     return noUiSlider.create(sliderELement, sliderConfigs[configItem]);
+  }
   return null;
 }
 
