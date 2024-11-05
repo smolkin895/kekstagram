@@ -4,72 +4,44 @@ let slider;
 
 const sliderConfigs = {
   'effect-chrome': {
-    start: [20, 80],
-    connect: true,
+    start: 40,
+    connect: 'lower',
     range: {
       'min': 0,
       'max': 100
     }
   },
   'effect-sepia': {
+    start: 40,
+    connect: 'lower',
     range: {
-      'min': 1300,
-      'max': 3250
-    },
-    step: 150,
-    start: [1450, 2050, 2350, 3000],
-    margin: 300,
-    limit: 600,
-    connect: true,
-    direction: 'rtl',
-    orientation: 'vertical',
-    behaviour: 'tap-drag',
-    tooltips: true,
+      'min': 0,
+      'max': 100
+    }
   },
   'effect-marvin': {
+    start: 40,
+    connect: 'lower',
     range: {
-      'min': 1300,
-      'max': 3250
-    },
-    step: 150,
-    start: [1450, 2050, 2350, 3000],
-    margin: 300,
-    limit: 600,
-    connect: true,
-    direction: 'rtl',
-    orientation: 'vertical',
-    behaviour: 'tap-drag',
-    tooltips: true,
+      'min': 0,
+      'max': 100
+    }
   },
   'effect-phobos': {
+    start: 40,
+    connect: 'lower',
     range: {
-      'min': 1300,
-      'max': 3250
-    },
-    step: 150,
-    start: [1450, 2050, 2350, 3000],
-    margin: 300,
-    limit: 600,
-    connect: true,
-    direction: 'rtl',
-    orientation: 'vertical',
-    behaviour: 'tap-drag',
-    tooltips: true,
+      'min': 0,
+      'max': 100
+    }
   },
   'effect-heat': {
+    start: 40,
+    connect: 'lower',
     range: {
-      'min': 1300,
-      'max': 3250
-    },
-    step: 150,
-    start: [1450, 2050, 2350, 3000],
-    margin: 300,
-    limit: 600,
-    connect: true,
-    direction: 'rtl',
-    orientation: 'vertical',
-    behaviour: 'tap-drag',
-    tooltips: true,
+      'min': 0,
+      'max': 100
+    }
   }
 }
 
