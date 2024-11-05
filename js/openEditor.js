@@ -51,7 +51,7 @@ function closeEditor(evt){
   evt.target.removeEventListener('click', addPreviewCloseListener);
   document.removeEventListener('keydown', escCloseHandler);
   uploadForm.removeEventListener('click', scaleControlListener);
-
+  uploadPreviewImage.classList.value = '';
 }
 
 function openEditor(){
