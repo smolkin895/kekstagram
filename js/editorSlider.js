@@ -1,14 +1,16 @@
 import {sliderELement} from './editImage.js';
 
+let slider;
+
 const sliderConfigs = {
   'effect-chrome': {
-  range: {
-    'min': 0,
-    'max': 1
+    start: [20, 80],
+    connect: true,
+    range: {
+      'min': 0,
+      'max': 100
+    }
   },
-  step: 0.1,
-  start: 1,
-},
   'effect-sepia': {
     range: {
       'min': 1300,
@@ -24,7 +26,7 @@ const sliderConfigs = {
     behaviour: 'tap-drag',
     tooltips: true,
   },
-  effectMarvin: {
+  'effect-marvin': {
     range: {
       'min': 1300,
       'max': 3250
@@ -71,14 +73,18 @@ const sliderConfigs = {
   }
 }
 
-function createSlider(element){
+function createSlider(element) {
   const configItem = element.closest('.effects__label').getAttribute('for');
   const classList = Array.from(element.classList.values());
-  if(classList.some(i => !i.indexOf('none'))){
-    console.log(noUiSlider.target)
-    return noUiSlider.create(sliderELement, sliderConfigs[configItem]);
-  }
-  return null;
+  if (classList.every(i => i.indexOf('none') == -1)){
+      if (slider) {
+        slider.destroy();
+      }
+      slider = noUiSlider.create(sliderELement, sliderConfigs[configItem]);
+      return slider;
+    }
+  slider.destroy();
+  return;
 }
 
 export {createSlider};
