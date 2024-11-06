@@ -1,9 +1,10 @@
-import {effectLevelSlider, uploadPreviewImage} from './openEditor.js';
+import {uploadPreviewImage} from './openEditor.js';
 import {createSlider} from './editorSlider.js';
 
 const hashtagInput = document.querySelector('[name="hashtags"]');
 const commentInput = document.querySelector('[name="description"]');
 const scaleControlValue = document.querySelector('.scale__control--value');
+const sliderFieldsetELement = document.querySelector('.img-upload__effect-level');
 const sliderELement = document.querySelector('.effect-level__slider');
 
 
@@ -11,7 +12,6 @@ function scalePicture(value){
   scaleControlValue.value = value + '%';
   uploadPreviewImage.style['transform'] = `scale(${(value/100).toFixed(2)})`
 }
-
 
 function scaleControlListener(evt){
   const elem = evt.target;
@@ -35,7 +35,7 @@ function applyEffectlListener(evt){
   }
   uploadPreviewImage.classList.value = '';
   uploadPreviewImage.classList.add(elem.classList[1]);
-  createSlider(elem) ? null : effectLevelSlider.classList.add('hidden');
+  createSlider(elem) ? sliderFieldsetELement.classList.remove('hidden') : sliderFieldsetELement.classList.add('hidden');
 }
 
-export {hashtagInput, commentInput, scaleControlListener, scaleControlValue, applyEffectlListener, sliderELement};
+export {hashtagInput, commentInput, scaleControlListener, scaleControlValue, applyEffectlListener, sliderELement, sliderFieldsetELement};

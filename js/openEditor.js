@@ -1,5 +1,12 @@
 import {isEscapeKey} from "./utils.js";
-import {hashtagInput, commentInput, scaleControlListener, scaleControlValue, applyEffectlListener} from "./editImage.js";
+import {
+  hashtagInput,
+  commentInput,
+  scaleControlListener,
+  scaleControlValue,
+  applyEffectlListener,
+  sliderFieldsetELement
+} from "./editImage.js";
 
 const fileINput = document.querySelector('#upload-file');
 const uploadForm = document.querySelector('.img-upload__form');
@@ -7,9 +14,8 @@ const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadPreviewImg = document.querySelector('img');
 const uploadCancel = document.querySelector('#upload-cancel');
 const uploadPreviewImage = document.querySelector('.img-upload__preview img');
-
-const effectLevelSlider = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
+
 
 const originalEffect = document.querySelector('#effect-none');
 
@@ -38,6 +44,7 @@ function addPreviewCloseListener(evt){
 function unhideEditor(){
   uploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  sliderFieldsetELement.classList.add('hidden');
 }
 
 function hideEditor(){
@@ -47,6 +54,7 @@ function hideEditor(){
 
 function closeEditor(evt){
   hideEditor();
+  uploadPreviewImage.style.filter = '';
   fileINput.value = '';
   evt.target.removeEventListener('click', addPreviewCloseListener);
   document.removeEventListener('keydown', escCloseHandler);
@@ -70,4 +78,4 @@ fileINput.addEventListener('change', (evt) => {
   openEditor();
 })
 
-export { uploadForm, uploadPreviewImage, effectLevelValue, effectLevelSlider };
+export { uploadForm, uploadPreviewImage, effectLevelValue };
