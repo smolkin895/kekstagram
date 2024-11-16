@@ -1,6 +1,6 @@
-import {pictures} from './data.js';
 import {renderPictures} from './picture.js';
 import  './openEditor.js';
+import {get_data} from "./api.js";
+import {showAlert} from "./utils.js";
 
-renderPictures(pictures);
-
+get_data('/kekstagram/data', renderPictures, showAlert);

@@ -1,5 +1,8 @@
 import {  getRandomValue as getRandomPositiveInteger, getRandomArrayItem as getRandomArrayElement } from './utils.js';
 
+const ACADEMY_BASE_URL = 'https://25.javascript.htmlacademy.pro'
+const ALERT_SHOW_TIME = 5000
+
 const commentLines = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -54,4 +57,4 @@ const getPictures = () =>
   );
 
 const pictures = getPictures();
-export { pictures };
+export { pictures, ACADEMY_BASE_URL, ALERT_SHOW_TIME };

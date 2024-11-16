@@ -20,11 +20,15 @@ function viewPictureListener(evt){
 }
 
 function renderPictures(pictures){
-  pictures.forEach((picture) => {
-    documentFragment.append(createPicture(picture));
-  });
-  picturesContainer.appendChild(documentFragment);
-  picturesContainer.addEventListener('click', viewPictureListener);
+  debugger;
+  pictures
+    .then((data) => {
+      data.forEach((picture) => {
+        documentFragment.append(createPicture(picture));
+      });
+      picturesContainer.appendChild(documentFragment);
+      picturesContainer.addEventListener('click', viewPictureListener);
+    })
 }
 
 export {renderPictures};
