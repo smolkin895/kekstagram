@@ -1403,3 +1403,8 @@ main {
 .hidden {
   display: none;
 }
+
+.text-help{
+  font-size: 12px;
+  color: red;
+}

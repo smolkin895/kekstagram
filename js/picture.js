@@ -12,7 +12,6 @@ function createPicture({url, description, comments, likes}){
   return picture;
 }
 
-
 function viewPictureListener(evt){
   if(evt.target.matches('.picture__img')){
     viewPicture(evt.target.closest('.picture'));
@@ -20,7 +19,6 @@ function viewPictureListener(evt){
 }
 
 function renderPictures(pictures){
-  debugger;
   pictures
     .then((data) => {
       data.forEach((picture) => {
