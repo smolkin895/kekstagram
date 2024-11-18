@@ -1405,6 +1405,17 @@ main {
 }
 
 .text-help{
-  font-size: 12px;
+  margin: 0 auto;
   color: red;
+}
+
+
+.has-success{
+  margin: 0 auto;
+  width: 450px;
+}
+
+.has-danger{
+  margin: 0 auto;
+  width: 450px;
 }

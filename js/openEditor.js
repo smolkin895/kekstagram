@@ -71,6 +71,8 @@ function openEditor(){
   originalEffect.checked = true;
   uploadForm.addEventListener('click', scaleControlListener);
   uploadForm.addEventListener('click', applyEffectlListener);
+  commentInput.textContent = '';
+  hashtagInput.textContent = '';
 }
 
 fileINput.addEventListener('change', (evt) => {
