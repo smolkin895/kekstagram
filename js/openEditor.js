@@ -7,6 +7,7 @@ import {
   applyEffectlListener,
   sliderFieldsetELement
 } from "./editImage.js";
+import {sendData} from "./api.js";
 
 const fileINput = document.querySelector('#upload-file');
 const uploadForm = document.querySelector('.img-upload__form');
@@ -75,9 +76,35 @@ function openEditor(){
   hashtagInput.textContent = '';
 }
 
+const setUserFormSubmit = () =>{
+  const pristine = new Pristine(uploadForm,     {
+      classTo: 'form-group',
+      errorClass: 'has-danger',
+      successClass: 'has-success',
+      errorTextParent: 'form-group'},
+    true);
+  uploadForm.addEventListener('submit', (evt) =>{
+    evt.preventDefault();
+
+    console.log(pristine.validate())
+    if (pristine.validate()){
+      const data = new FormData(evt.target);
+      sendData('/kekstagram',
+        data,
+        closeEditor,
+        alert
+        )
+    }
+    else{
+      pristine.validate({silent:true});
+    }
+  });
+
+}
+
 fileINput.addEventListener('change', (evt) => {
   readURL(evt.target);
   openEditor();
 })
 
-export { uploadForm, uploadPreviewImage, effectLevelValue };
+export { uploadForm, uploadPreviewImage, effectLevelValue, setUserFormSubmit };

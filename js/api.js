@@ -1,6 +1,6 @@
 import {ACADEMY_BASE_URL} from "./data.js";
 
-function get_data(path, onSuccess, onFail){
+function getData(path, onSuccess, onFail){
   fetch(ACADEMY_BASE_URL.concat(path))
     .then(response => {
       if(response.ok){
@@ -15,20 +15,21 @@ function get_data(path, onSuccess, onFail){
     })
 }
 
-function send_data(path, onSuccess, onFail){
-  fetch(ACADEMY_BASE_URL.concat(path))
+function sendData(path, body, onSuccess, onFail){
+  fetch(ACADEMY_BASE_URL.concat(path),{
+    method: 'POST',
+    body: body
+  })
     .then(response => {
       if(response.ok){
-        onSuccess(response.json());
+        onSuccess();
       }
       else{
-        onFail('При получении данных произошла ошибка, попробойте ещё раз.');
+        onFail('Упали в else');
       }
     })
-    .catch(() => {
-      onFail('При получении данных произошла ошибка, попробойте ещё раз.');
-    })
+    .catch(onFail('Упали в catch'))
 }
 
 
-export {get_data}
+export {getData, sendData}
