@@ -15,6 +15,7 @@ function getData(path, onSuccess, onFail){
     })
 }
 
+
 function sendData(path, body, onSuccess, onFail){
   fetch(ACADEMY_BASE_URL.concat(path),{
     method: 'POST',
@@ -28,7 +29,8 @@ function sendData(path, body, onSuccess, onFail){
         onFail('Упали в else');
       }
     })
-    .catch(onFail('Упали в catch'))
+    .catch((e) => {
+      console.log(e);})
 }
 
 

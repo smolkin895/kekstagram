@@ -57,7 +57,7 @@ function closeEditor(evt){
   hideEditor();
   uploadPreviewImage.style.filter = '';
   fileINput.value = '';
-  evt.target.removeEventListener('click', addPreviewCloseListener);
+  uploadCancel.removeEventListener('click', addPreviewCloseListener);
   document.removeEventListener('keydown', escCloseHandler);
   uploadForm.removeEventListener('click', scaleControlListener);
   uploadPreviewImage.classList.value = '';
@@ -85,13 +85,21 @@ const setUserFormSubmit = () =>{
     true);
   uploadForm.addEventListener('submit', (evt) =>{
     evt.preventDefault();
-
     console.log(pristine.validate())
     if (pristine.validate()){
       const data = new FormData(evt.target);
       sendData('/kekstagram',
         data,
-        closeEditor,
+        () => {
+        closeEditor();
+        const sucessWindow =  document.getElementById('success').content.cloneNode(true);
+        console.log(sucessWindow);
+        document.body.appendChild(sucessWindow);
+        const successButton = document.querySelector('.success__button');
+        successButton.addEventListener('click', () => {
+          document.querySelector('.success').remove();
+        })
+        },
         alert
         )
     }
@@ -99,7 +107,6 @@ const setUserFormSubmit = () =>{
       pristine.validate({silent:true});
     }
   });
-
 }
 
 fileINput.addEventListener('change', (evt) => {
@@ -108,3 +115,4 @@ fileINput.addEventListener('change', (evt) => {
 })
 
 export { uploadForm, uploadPreviewImage, effectLevelValue, setUserFormSubmit };
+
