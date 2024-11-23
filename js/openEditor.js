@@ -68,6 +68,8 @@ function closeEditor(evt){
 
 function openEditor(){
   unhideEditor();
+  document.querySelector('#upload-submit').disabled = false;
+
   uploadCancel.addEventListener('click', addPreviewCloseListener);
   document.addEventListener('keydown', escCloseHandler);
   scaleControlValue.value = '100%';
@@ -90,6 +92,7 @@ const setUserFormSubmit = () =>{
     evt.preventDefault();
     console.log(pristine.validate())
     if (pristine.validate()){
+      document.querySelector('#upload-submit').disabled = true;
       const data = new FormData(evt.target);
       sendData('/kekstagram',
         data,
@@ -109,26 +112,23 @@ const setUserFormSubmit = () =>{
           document.querySelector('.success').remove();
         })
         },
-
         () => {
           closeEditor();
           const errorWindowNode =  document.getElementById('error').content.cloneNode(true);
           document.body.appendChild(errorWindowNode);
           const errorButton = document.querySelector('.error__button');
           const errorWindow = document.querySelector('.error__inner');
-          const mouseupListener = (evt) => {
-            if(errorWindow && evt.target != errorWindow && evt.target.parentNode != errorWindow){
+          const mouseupErrorListener = (evt) => {
+            if(errorWindow && evt.target == errorButton){
+              console.log('Кликаем при неудаче');
               document.querySelector('.error').remove();
+              console.log(fileINput);
+              fileINput.click();
             }
           };
-          window.addEventListener('mouseup', mouseupListener);
-          errorButton.addEventListener('click', () => {
-            document.querySelector('.error').remove();
-          })
-        }
-
-
-        )
+          window.addEventListener('mouseup', mouseupErrorListener);
+          
+        })
     }
     else{
       pristine.validate({silent:true});
@@ -140,6 +140,7 @@ fileINput.addEventListener('change', (evt) => {
   readURL(evt.target);
   openEditor();
 })
+
 
 export { uploadForm, uploadPreviewImage, effectLevelValue, setUserFormSubmit };
 
