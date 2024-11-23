@@ -54,6 +54,8 @@ function hideEditor(){
 }
 
 function closeEditor(evt){
+  commentInput.value = '';
+  hashtagInput.value = '';
   hideEditor();
   uploadPreviewImage.style.filter = '';
   fileINput.value = '';
@@ -61,6 +63,7 @@ function closeEditor(evt){
   document.removeEventListener('keydown', escCloseHandler);
   uploadForm.removeEventListener('click', scaleControlListener);
   uploadPreviewImage.classList.value = '';
+
 }
 
 function openEditor(){
@@ -72,8 +75,8 @@ function openEditor(){
   originalEffect.checked = true;
   uploadForm.addEventListener('click', scaleControlListener);
   uploadForm.addEventListener('click', applyEffectlListener);
-  commentInput.textContent = '';
-  hashtagInput.textContent = '';
+  commentInput.value = '';
+  hashtagInput.value = '';
 }
 
 const setUserFormSubmit = () =>{
@@ -92,15 +95,39 @@ const setUserFormSubmit = () =>{
         data,
         () => {
         closeEditor();
-        const sucessWindow =  document.getElementById('success').content.cloneNode(true);
-        console.log(sucessWindow);
-        document.body.appendChild(sucessWindow);
+        const sucessWindowNode =  document.getElementById('success').content.cloneNode(true);
+        document.body.appendChild(sucessWindowNode);
         const successButton = document.querySelector('.success__button');
+        const successWindow = document.querySelector('.success__inner');
+        const mouseupListener = (evt) => {
+          if(successWindow && evt.target != successWindow && evt.target.parentNode != successWindow){
+            document.querySelector('.success').remove();
+          }
+        };
+        window.addEventListener('mouseup', mouseupListener);
         successButton.addEventListener('click', () => {
           document.querySelector('.success').remove();
         })
         },
-        alert
+
+        () => {
+          closeEditor();
+          const errorWindowNode =  document.getElementById('error').content.cloneNode(true);
+          document.body.appendChild(errorWindowNode);
+          const errorButton = document.querySelector('.error__button');
+          const errorWindow = document.querySelector('.error__inner');
+          const mouseupListener = (evt) => {
+            if(errorWindow && evt.target != errorWindow && evt.target.parentNode != errorWindow){
+              document.querySelector('.error').remove();
+            }
+          };
+          window.addEventListener('mouseup', mouseupListener);
+          errorButton.addEventListener('click', () => {
+            document.querySelector('.error').remove();
+          })
+        }
+
+
         )
     }
     else{
@@ -115,4 +142,5 @@ fileINput.addEventListener('change', (evt) => {
 })
 
 export { uploadForm, uploadPreviewImage, effectLevelValue, setUserFormSubmit };
+
 

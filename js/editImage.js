@@ -1,8 +1,8 @@
 import {uploadPreviewImage} from './openEditor.js';
 import {createSlider} from './editorSlider.js';
 
-const hashtagInput = document.querySelector('[name="hashtags"]');
-const commentInput = document.querySelector('[name="description"]');
+const hashtagInput = document.querySelector('.text__hashtags');
+const commentInput = document.querySelector('.text__description');
 const scaleControlValue = document.querySelector('.scale__control--value');
 const sliderFieldsetELement = document.querySelector('.img-upload__effect-level');
 const sliderELement = document.querySelector('.effect-level__slider');
