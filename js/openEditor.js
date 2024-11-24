@@ -73,7 +73,7 @@ function openEditor(){
   uploadCancel.addEventListener('click', addPreviewCloseListener);
   document.addEventListener('keydown', escCloseHandler);
   scaleControlValue.value = '100%';
-  uploadPreviewImage.style['transform'] = 1.00;
+  uploadPreviewImage.style.transform = 'scale(1)';
   originalEffect.checked = true;
   uploadForm.addEventListener('click', scaleControlListener);
   uploadForm.addEventListener('click', applyEffectlListener);
