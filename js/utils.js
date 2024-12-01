@@ -75,4 +75,23 @@ const showAlert = (message) => {
 }
 
 
-export {getNumberGenerator, getRandomArrayItem, getRandomValue, checkLength, isEscapeKey, showAlert};
+function deBounce (callback, timeoutDelay = 500) {
+  // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
+  // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
+  let timeoutId = null;
+
+  return (...rest) => {
+    // Перед каждым новым вызовом удаляем предыдущий таймаут,
+    // чтобы они не накапливались
+    window.clearTimeout(timeoutId);
+
+    // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
+    timeoutId = window.setTimeout(() => callback.apply(this, rest), timeoutDelay);
+    console.log(timeoutId);
+
+    // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
+    // пока действие совершается чаще, чем переданная задержка timeoutDelay
+  };
+}
+
+export {getNumberGenerator, getRandomArrayItem, getRandomValue, checkLength, isEscapeKey, showAlert, deBounce};
