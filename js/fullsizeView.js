@@ -1,4 +1,4 @@
-import {pictures} from './data.js';
+import {picturesStorage} from './data.js';
 import {isEscapeKey} from './utils.js';
 
 const imageViewiengWindow = document.querySelector('.big-picture');
@@ -24,8 +24,15 @@ function createCommentElement({avatar, name, message}){
 
 function createCommentElements(picture){
   const documentFragment = document.createDocumentFragment();
-  const url = 'photos' + picture.querySelector('.picture__img').src.split('photos')[1];
-  const comments = pictures.find((item) => item.url === url).comments;
+  const pictureUrl = 'photos' + picture.querySelector('.picture__img').src.split('photos')[1];
+  console.log(pictureUrl);
+  // console.log(picturesStorage);
+  console.log(picturesStorage);
+  console.log(picturesStorage);
+  console.log(picturesStorage);
+  const item = picturesStorage.find(({url}) => url === pictureUrl);
+  console.log(item);
+  const comments = item.comments;
   return comments.map((comment) => createCommentElement(comment));
 }
 

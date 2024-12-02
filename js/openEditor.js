@@ -127,7 +127,6 @@ const setUserFormSubmit = () =>{
             }
           };
           window.addEventListener('mouseup', mouseupErrorListener);
-          
         })
     }
     else{

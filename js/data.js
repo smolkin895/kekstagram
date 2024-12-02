@@ -56,5 +56,6 @@ const getPictures = () =>
     createPicture(pictureIndex + 1)
   );
 
-const pictures = getPictures();
-export { pictures, ACADEMY_BASE_URL, ALERT_SHOW_TIME };
+let picturesStorage = [];
+export { ACADEMY_BASE_URL, ALERT_SHOW_TIME };
+export { picturesStorage };

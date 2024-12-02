@@ -1,6 +1,7 @@
 import {viewPicture} from './fullsizeView.js';
 import {deBounce} from './utils.js';
 import {getData} from "./api.js";
+import {picturesStorage} from "./data.js";
 import {showAlert} from "./utils.js";
 
 
@@ -14,7 +15,7 @@ const Filter = {
   RANDOM: 'filter-random',
   DISCUSSED: 'filter-discussed',
 };
-const PICTURES_RANDOM = 2;
+const PICTURES_RANDOM = 10;
 
 
 function createPicture({url, description, comments, likes}){
@@ -37,8 +38,11 @@ const filterPictures = (elemId) =>{
     case Filter.DEFAULT:
       return pictures;
     case Filter.RANDOM:
+      console.log('Зашел в рандом');
       return pictures.sort(randomSort).slice(0, PICTURES_RANDOM);
     case Filter.DISCUSSED:
+      console.log('Зашел в обсуждаемые');
+      pictures = pictures.sort(moreDiscussedSort);
       console.log(pictures);
       return pictures.sort(moreDiscussedSort);
     }
@@ -56,9 +60,10 @@ filtersForm.addEventListener('click', (evt) => {
     deBounce(() => {
       getData('/kekstagram/data',
         (pictures) => {
-          renderPictures(pictures, filterPictures(elem.id)());
-        }
-          ,
+          const picturesToBeDeleted = picturesContainer.querySelectorAll('.picture');
+          picturesToBeDeleted.forEach((picture) => picture.remove());
+          renderPictures(pictures, filterPictures(elem.id));
+        },
         showAlert);
     })()
   }
@@ -74,13 +79,11 @@ function viewPictureListener(evt){
 function renderPictures(pictures, filterPictures=null){
   pictures
     .then((data) => {
-      // console.log(data);
-      console.log(data[1]);
-
+      console.log(Array.isArray(data));
       if (filterPictures){
-        const filteredData = filterPictures(data);
-        // console.log(filteredData);
+        data = filterPictures(data);
       }
+      picturesStorage = [...data];
       data.forEach((picture) => {
         documentFragment.append(createPicture(picture));
       });
