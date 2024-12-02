@@ -25,15 +25,8 @@ function createCommentElement({avatar, name, message}){
 function createCommentElements(picture){
   const documentFragment = document.createDocumentFragment();
   const pictureUrl = 'photos' + picture.querySelector('.picture__img').src.split('photos')[1];
-  console.log(pictureUrl);
-  // console.log(picturesStorage);
-  console.log(picturesStorage);
-  console.log(picturesStorage);
-  console.log(picturesStorage);
-  const item = picturesStorage.find(({url}) => url === pictureUrl);
-  console.log(item);
-  const comments = item.comments;
-  return comments.map((comment) => createCommentElement(comment));
+  const item = picturesStorage.getPictures.find(({url}) => url === pictureUrl);
+  return item.comments.map((comment) => createCommentElement(comment));
 }
 
 function openViewiengWindow(){

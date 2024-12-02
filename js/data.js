@@ -56,6 +56,17 @@ const getPictures = () =>
     createPicture(pictureIndex + 1)
   );
 
-let picturesStorage = [];
+
+const picturesStorage = {
+  pictures: [],
+
+  get getPictures() {
+    return this.pictures;
+  },
+
+  set setPictures(value) {
+    this.pictures = value;
+  }
+};
 export { ACADEMY_BASE_URL, ALERT_SHOW_TIME };
 export { picturesStorage };

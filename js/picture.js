@@ -83,7 +83,7 @@ function renderPictures(pictures, filterPictures=null){
       if (filterPictures){
         data = filterPictures(data);
       }
-      picturesStorage = [...data];
+      picturesStorage.setPictures = [...data];
       data.forEach((picture) => {
         documentFragment.append(createPicture(picture));
       });
