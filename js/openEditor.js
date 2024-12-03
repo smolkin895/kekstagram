@@ -19,18 +19,8 @@ const effectLevelValue = document.querySelector('.effect-level__value');
 
 
 const originalEffect = document.querySelector('#effect-none');
+const FILE_TYPES = ['jpg', 'jpeg', 'png', 'gif']; 
 
-
-const fR=new FileReader();
-
-function readURL(el) {
-  if (el.files && el.files[0]) {
-       fR.addEventListener('load', function(e) {
-          uploadPreviewImg.src=e.target.result
-       });
-       fR.readAsDataURL(el.files[0]);
-  }
-}
 
 function escCloseHandler(evt) {
   if(isEscapeKey(evt) && evt.target != hashtagInput && evt.target != commentInput){
@@ -135,8 +125,15 @@ const setUserFormSubmit = () =>{
   });
 }
 
+const isValidFile = (file) => {
+  return FILE_TYPES.some((i) => file.name.endsWith(i));
+}
+
 fileINput.addEventListener('change', (evt) => {
-  readURL(evt.target);
+  const file = fileINput.files[0];
+  if(file && isValidFile(file)){
+    uploadPreviewImage.src = URL.createObjectURL(file);
+  };
   openEditor();
 })
 
